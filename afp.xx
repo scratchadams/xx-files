@@ -37,7 +37,7 @@
 │                                                    │ │ │ │      │
 │ 0xdeadbeef -> server_quantum                       │ │ │ │      │ 
 │ 0xcafebabe -> serverID, ClientID                   │ │ │ │      │
-│ 0x005555555a9a2c -> *commands                      │ │ │ │      │                                                                                                       │ │ │ │      │         
+│ 0x005555555a9a2c -> *commands                      │ │ │ │      │          
 │       0000  0000 000000                            │ │ │ │      │
 └─────┐ 0   0 0      00                              │ │ │ │      │
 ┌─────┘ 0   0 0000   00                              │ │ │ │      │
