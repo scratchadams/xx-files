@@ -6,7 +6,7 @@
 │                                                                         │
 │ https://medium.com/@kevin.massey1189/cve-2018-1160-writeup-936b5e3b3cf2 │
 │                                                                         │
-│					     	    by hyp                                    │
+│					     	                by hyp                                    │
 ╘═════════════════════════════════════════════════════════════════════════╛
 
 
@@ -27,17 +27,17 @@
 \x20\x9a\x5a\x55\x55\x55\x00\x00│                    │ │ │ │      │
 ┌───────────────────────────────┘                    │ │ │ │      │
 │typedef struct DSI {                                │ │ │ │      │
-│	...                                              │ │ │ │      │
+│	  ...                                              │ │ │ │      │
 │   uint32_t attn_quantum, datasize, server_quantum; │ │ │ │      │
-│	uint16_t serverID, clientID;                     │ │ │ │      │
-│	uint8_t  *commands;                              │ │ │ │      │
-│	uint8_t  data[DSI_DATASIZ];                      │ │ │ │      │
+│	  uint16_t serverID, clientID;                     │ │ │ │      │
+│	  uint8_t  *commands;                              │ │ │ │      │
+│	  uint8_t  data[DSI_DATASIZ];                      │ │ │ │      │
 │   ...                                              │ │ │ │      │
 │}                                                   │ │ │ │      │
 │                                                    │ │ │ │      │
 │ 0xdeadbeef -> server_quantum                       │ │ │ │      │ 
 │ 0xcafebabe -> serverID, ClientID                   │ │ │ │      │
-│ 0x005555555a9a2c -> *commands                      │ │ │ │      │                                                   │                                                    │ │ │ │      │         
+│ 0x005555555a9a2c -> *commands                      │ │ │ │      │                                                                                                       │ │ │ │      │         
 │       0000  0000 000000                            │ │ │ │      │
 └─────┐ 0   0 0      00                              │ │ │ │      │
 ┌─────┘ 0   0 0000   00                              │ │ │ │      │
@@ -62,15 +62,15 @@
 \x00\x00\x00\x00│ ────────────────────────────────┘                            
 ┌───────────────┘                             
 │while (i < dsi->cmdlen) {
-│	switch (dsi->commands[i++]) {
+│	  switch (dsi->commands[i++]) {
 │ 
-│ 		case DSIOPT_ATTNQUANT:   <──────────────────────────────────┐
-│   		memcpy(&dsi->attn_quantum, dsi->commands + i + 1,       │
-│           	dsi->commands[i]);     ┴────────────────────┴──┐    │
-│   		                                                   │    │
-│   		dsi->attn_quantum = ntohl(dsi->attn_quantum);      │    │
-│   	...                                                    │    │
-│	}                                                          │    │
+│ 		  case DSIOPT_ATTNQUANT:   <──────────────────────────────────┐
+│   		    memcpy(&dsi->attn_quantum, dsi->commands + i + 1,       │
+│           	  dsi->commands[i]);     ┴────────────────────┴──┐    │
+│   		                                                       │    │
+│   		    dsi->attn_quantum = ntohl(dsi->attn_quantum);      │    │
+│   	  ...                                                    │    │
+│	  }                                                          │    │
 │}                                                             │    │
 │                                                              │    │
 │    00     00000 00000                                        │    │
